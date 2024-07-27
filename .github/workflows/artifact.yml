@@ -1,6 +1,14 @@
 name: Workflow Demo
 
-on: push
+on:
+  pull_request:
+    types:
+      - opened
+      - closed
+    branches:
+      - main
+    paths:
+      - '.github/workflows/artifact.yml'
 
 jobs:
   build:
