@@ -1,9 +1,8 @@
-name: Workflow Demo
+name: pull request merged
 
 on:
   pull_request:
     types:
-      - opened
       - closed
     branches:
       - main
@@ -55,3 +54,9 @@ jobs:
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
         run: echo "$RUNNER_CONTEXT"
+      - name: Check if merged
+        id: check_merged
+        run: echo "PR_MERGED=${{ github.event.pull_request.merged }}" >> $GITHUB_ENV
+      - name: Notify on merge
+        if: steps.check_merged.outputs.PR_MERGED == 'true'
+        run: echo "Pull request was merged!"
