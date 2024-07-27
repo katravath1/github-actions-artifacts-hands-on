@@ -51,3 +51,7 @@ jobs:
           path: ./artifacts
       - name: Display content of the text file
         run: cat ./artifacts/hello.txt
+      - name: Dump matrix context
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: echo "$RUNNER_CONTEXT"
