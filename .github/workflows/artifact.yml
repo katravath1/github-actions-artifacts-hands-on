@@ -60,3 +60,5 @@ jobs:
       - name: Notify on merge
         if: steps.check_merged.outputs.PR_MERGED == 'true'
         run: echo "Pull request was merged!"
+
+        
